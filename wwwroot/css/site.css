@@ -1,0 +1,237 @@
+
+:root {
+    --primary-color: #EEEDEB; 
+    --secondary-color: #D8D8D8;
+    --dark-color: #31363F;
+    --call-to-action-color: #2C74B3;
+}
+
+*,::before,::after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#main{
+    background-color: pink;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+}
+
+#left-bar {
+    width: 150px;
+    height: 100%;
+    padding-top: 100px;
+    background-color: var(--secondary-color);
+}
+
+#left-bar ul{
+    text-decoration: none;
+    padding: 0;
+    text-align: center;
+}
+
+#left-bar button {
+    width: 100%;
+    padding: 10px;
+    font-size: 13px;
+    margin-bottom: 10px;
+    border: 0;
+    font-weight: 500;
+    color: var(--dark-color);
+    text-align: left;
+    background-color: var(--secondary-color);
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+#left-bar button:hover {
+    background-color: var(--call-to-action-color);
+    color: var(--primary-color);
+    font-size: 14px;
+    transition: 0.3s;
+    padding: 8px;
+}
+#left-bar #btn-agregar{
+    background-color: var(--call-to-action-color);
+    margin-top: 30px;
+}
+#left-bar #left-bar-title {
+    color: var(--dark-color);
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+}
+
+#main-content *{
+    margin: 0;
+}
+
+#main-content {
+    width: calc(100% - 150px);
+    padding: 0 50px;
+    background-color: var(--primary-color);
+}
+
+#main-content  #filter-container {
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-colo: red;
+}
+
+#filter-container select {
+    border: 0;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: var(--dark-color);
+    color: var(--primary-color);
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+#main-content #charts-container {
+    display: flex;
+    gap: 20px;
+}
+
+#charts-container div {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--dark-color);
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+#charts-container .text-bigger{
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+#charts-container .description{
+    font-size: 12px;
+}
+
+.urgent-color {
+    background-color: #C2185B !important;
+    color: var(--secondary-color) !important;
+}
+
+#main-content-container {
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+}
+
+#main-content-container #main-left {
+    width: 60%;
+}
+
+#main-content #table-container {
+    width: 100%;
+    height: 300px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 10px;
+    padding: 10px;
+    overflow: scroll;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.align-right {
+    text-align: right;
+}
+
+.btn-update, .btn-delete {
+    padding: 0 8px;
+    width: 80px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-update {
+    border: 1px solid gray;
+    background-color: var(--call-to-action-color);
+    color: var(--secondary-color);
+}
+
+.btn-delete {
+    border: 0;
+    background-color: transparent;
+    color: darkred;
+}
+
+.btn-update:hover{
+    color: black;
+}
+
+.btn-delete:hover {
+    color: red;
+}
+
+
+#task-details{
+    margin-top: 20px;
+}
+
+#task-details p:first-of-type{
+    color: var(--dark-color);
+    font-weight: bold;
+    font-size: 20px;
+}
+#task-details p:nth-of-type(2), #task-details p:nth-of-type(3) {
+    font-size: 14px;
+}
+
+#task-details p:nth-of-type(4) {
+    margin-top: 10px;
+}
+
+
+#main-content-container #main-right {
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+table, table td {
+    vertical-align: middle;
+    font-size: 14px;
+    text-align: center;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
+#history-content{
+    border-left: 1px solid var(--dark-color);
+    padding-left: 5px;
+}
+
+#history-content p{
+    margin-bottom: 5px;
+}
+
+textarea{
+    height: 300px;
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+#btn-add input {
+    background-color: var(--call-to-action-color);
+    color: var(--primary-color);
+}
+
+#btn-add input:hover {
+    background-color: var(--dark-color);
+    color: var(--primary-color);
+}

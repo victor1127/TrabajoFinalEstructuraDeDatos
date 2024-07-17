@@ -1,0 +1,56 @@
+﻿@using TrabajoFinalEstructuraDeDatos.Enums;
+@model TrabajoFinalEstructuraDeDatos.Models.Tarea
+
+@{
+    ViewData["Title"] = "Update";
+}
+
+<div class="container">
+    <h1 class="mt-4">Editar Tarea</h1>
+    <h4>Tarea</h4>
+    <hr />
+
+    <div class="row mt-3">
+        <div class="col-md-6">
+            <form asp-action="UpdateTask">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group mb-2">
+                    <input asp-for="Titulo" class="form-control" placeholder="Titulo" required value="@Model.Titulo" />
+                    <span asp-validation-for="Titulo" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-2">
+                    <textarea asp-for="Descripcion" class="form-control" placeholder="Descripcion" required value="@Model.Descripcion"></textarea>
+                    <span asp-validation-for="Descripcion" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-2">
+                    <label>@Html.DisplayNameFor(n => n.Prioridad)</label>
+                    <select asp-items="@Html.GetEnumSelectList(typeof(Priority))" class="form-select"></select>
+                    <span asp-validation-for="Prioridad" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-2">
+                    <label>@Html.DisplayNameFor(n => n.Categoria)</label>
+                    <select asp-items="@Html.GetEnumSelectList(typeof(Category))" class="form-select"></select>
+                    <span asp-validation-for="Prioridad" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-2">
+                    <label asp-for="FechaFinal"></label>
+                    <input name="FechaFinal" class="form-control" type="date" required value="@Model.FechaFinal.ToString("yyyy-MM-dd")" />
+                    <span asp-validation-for="Prioridad" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-2" id="btn-add">
+                    <input type="submit" value="Create" class="btn btn-sm" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <div>
+        <a asp-action="Index">Regresar</a>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

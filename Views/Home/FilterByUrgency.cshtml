@@ -1,0 +1,93 @@
+﻿@using TrabajoFinalEstructuraDeDatos.Enums;
+@using Newtonsoft.Json;
+@using Newtonsoft.Json.Converters;
+@model Queue<Tarea>
+
+
+
+@{
+    ViewData["Title"] = "Home Page";
+    var altas = Model.Where(t => t.Prioridad == Priority.Alta).Count();
+    var urgentes = Model.Where(t => t.Prioridad == Priority.Urgente).Count();
+    var normales = Model.Where(t => t.Prioridad == Priority.Normal).Count();
+
+}
+
+<div id="filter-container">
+    <div>
+        <select asp-items="@Html.GetEnumSelectList(typeof(Priority))">
+            @*          <option selected disabled>Filtrar</option>
+            <option>Prioridad</option>
+            <option>Categoria</option>
+            <option>Estado</option> *@
+        </select>
+    </div>
+    <div id="charts-container">
+        <div>
+            <p class="text-bigger">@altas</p>
+            <p class="description">Tareas altas</p>
+        </div>
+        <div class="urgent-color">
+            <p class="text-bigger">@urgentes</p>
+            <p class="description">Tareas urgentes</p>
+        </div>
+        <div>
+            <p class="text-bigger">@normales</p>
+            <p class="description">Tareas normales</p>
+        </div>
+    </div>
+</div>
+
+@{
+    var queue = Model.ElementAt(0);
+}
+<div id="main-content-container">
+    <div id="main-left">
+        <div id="table-container">
+            <table class="table table-responsive table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(x => queue.Titulo)</th>
+                        <th>@Html.DisplayNameFor(x => queue.Prioridad)</th>
+                        <th>@Html.DisplayNameFor(x => queue.Status)</th>
+                        <th>@Html.DisplayNameFor(x => queue.Categoria)</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var tarea in Model)
+                        {
+                            var jsonSettings = new JsonSerializerSettings();
+                            jsonSettings.Converters.Add(new StringEnumConverter());
+                            string jsonObject = JsonConvert.SerializeObject(tarea, jsonSettings);
+
+                            <tr id="table-tr-@tarea.Id">
+                                <td class="cursor-pointer" onclick="MostrarDescripcion('@jsonObject', @tarea.Id)">@tarea.Titulo</td>
+                                <td>@tarea.Prioridad</td>
+                                <td>@tarea.Status</td>
+                                <td>@tarea.Categoria</td>
+                                <td class="align-right">
+                                    <button class="btn-update" onclick="location.href='@Url.Action("UpdateTask", "Home", new{ id = tarea.Id})'">Editar</button>
+                                    <button id="table-@($"delete-{tarea.Id}")" class="btn-delete" onclick="location.href='@Url.Action("EliminateTask", "Home", new{ id = tarea.Id})'">Elimilar</button>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div id="task-details">
+            <p>@Html.DisplayNameFor(x => queue.Descripcion)</p>
+            <p class="text-muted">Inicio: <span id="task-created-date"></span></p>
+            <p class="text-muted">Vence: <span id="task-exp-date"></span></p>
+            <p id="task-description-details"></p>
+        </div>
+    </div>
+
+    <div id="main-right">
+        <div id="history-content">
+        </div>
+    </div>
+</div>

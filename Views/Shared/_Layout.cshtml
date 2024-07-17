@@ -1,0 +1,37 @@
+﻿@using TrabajoFinalEstructuraDeDatos.Enums;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Task tracker</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/TrabajoFinalEstructuraDeDatos.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <main id="main">
+        <div id="left-bar">
+            <ul>
+                <li id="left-bar-title">Tareas</li>
+                <li><button onclick="location.href='@Url.Action("Index", "Home")'">Todos</button></li>
+                <li><button onclick="location.href='@Url.Action("FilterByUrgency", "Home")'">Prioridad: Urgentes</button></li>
+                <li><button onclick="location.href='@Url.Action("FilterByPriority", "Home", new{priority = Priority.Alta})'">Prioridad: Alta</button></li>
+                <li><button onclick="location.href='@Url.Action("FilterByPriority", "Home", new{priority = Priority.Normal})'">Prioridad: Normal</button></li>
+                <li><button id="btn-agregar" onclick="location.href='@Url.Action("AddTaskIndex", "Home")'">Agregar</button></li>
+
+            </ul>
+        </div>
+        <div id="main-content">
+            @RenderBody()
+        </div>
+    </main>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
